@@ -1,4 +1,6 @@
 package com.thoughtworks.shoppingCart;
 
-public class ShoppingCart {
+import java.util.ArrayList;
+
+public class ShoppingCart extends ArrayList{
 }
