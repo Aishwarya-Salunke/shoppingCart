@@ -3,6 +3,8 @@ package com.thoughtworks.shoppingCart;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
@@ -13,6 +15,11 @@ public class ShoppingCartController {
     ResponseEntity<Void> addToCart(@RequestBody Item item){
         shoppingCart.add(item);
         return ResponseEntity.status(CREATED).build();
+    }
+
+    @GetMapping("/item")
+    List<Item> item(){
+        return shoppingCart;
     }
 
     @DeleteMapping("/item/{id}")
