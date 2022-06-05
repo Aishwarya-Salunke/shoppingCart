@@ -1,9 +1,7 @@
 package com.thoughtworks.shoppingCart;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -17,4 +15,9 @@ public class ShoppingCartController {
         return ResponseEntity.status(CREATED).build();
     }
 
+    @DeleteMapping("/item/{id}")
+    void deleteItem(@PathVariable int id){
+        Item item = shoppingCart.stream().filter(it -> it.getItemId()==id).findFirst().orElse(null);
+        shoppingCart.remove(item);
+    }
 }
