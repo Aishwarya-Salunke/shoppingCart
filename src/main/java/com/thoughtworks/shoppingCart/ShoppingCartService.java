@@ -12,12 +12,13 @@ public class ShoppingCartService {
     public void addToCart(Item item){
         itemsInCart.add(item);
     }
+
     public List<Item> getItems() {
         return itemsInCart;
     }
 
     public void removeItem(int id){
-        Item item = itemsInCart.stream().filter(it -> it.getItemId()==id).findFirst().orElse(null);
+        Item item = itemsInCart.stream().filter(it -> it.getId()==id).findFirst().orElse(null);
         itemsInCart.remove(item);
     }
 }

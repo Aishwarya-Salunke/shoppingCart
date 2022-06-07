@@ -1,20 +1,27 @@
 package com.thoughtworks.shoppingCart;
 
 public class Item {
-    private final int itemId;
+    private final int id;
 
-    private final String itemName;
+    private final String name;
 
-    public Item(int id,String name){
-        this.itemId = id;
-        this.itemName = name;
+    private final double price;
+
+    public Item(int id, String name, double price){
+        this.id = id;
+        this.name = name;
+        this.price = price;
     }
 
-    public int getItemId() {
-        return itemId;
+    public int getId() {
+        return id;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
     }
 }

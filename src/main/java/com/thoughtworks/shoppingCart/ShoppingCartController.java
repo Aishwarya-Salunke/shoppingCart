@@ -14,18 +14,18 @@ public class ShoppingCartController {
     @Autowired
     ShoppingCartService shoppingCart;
 
-    @PostMapping("/shopping-cart/add-item")
+    @PostMapping("/shopping-cart/items")
     ResponseEntity<Void> addToCart(@RequestBody Item item){
         shoppingCart.addToCart(item);
         return ResponseEntity.status(CREATED).build();
     }
 
-    @GetMapping("/shopping-cart/view")
+    @GetMapping("/shopping-cart/items")
     List<Item> item(){
         return shoppingCart.getItems();
     }
 
-    @DeleteMapping("/shopping-cart/delete-item/{id}")
+    @DeleteMapping("/shopping-cart/items/{id}")
     void deleteItem(@PathVariable int id){
         shoppingCart.removeItem(id);
     }
