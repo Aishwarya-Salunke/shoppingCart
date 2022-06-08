@@ -9,7 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,12 +25,14 @@ public class ShoppingCartControllerTest {
     @MockBean
     private ShoppingCartService shoppingCartService;
 
+    private Item item = new Item("Book",30);
+
     @Test
     void getItemsInShoppingCart() throws Exception{
-        Mockito.when(shoppingCartService.getItems()).thenReturn(Arrays.asList(new Item(1,"Book",30)));
+        Mockito.when(shoppingCartService.getItems()).thenReturn(List.of(item));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/shopping-cart/items"))
-                .andExpect(content().json(objectMapper.writeValueAsString(Arrays.asList(new Item(1,"Book",30)))))
+                .andExpect(content().json(objectMapper.writeValueAsString(List.of(item))))
                 .andExpect(status().isOk());
 
         Mockito.verify(shoppingCartService).getItems();

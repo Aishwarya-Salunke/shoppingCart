@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -15,18 +16,18 @@ public class ShoppingCartController {
     ShoppingCartService shoppingCart;
 
     @PostMapping("/shopping-cart/items")
-    ResponseEntity<Void> addToCart(@RequestBody Item item){
-        shoppingCart.addToCart(item);
-        return ResponseEntity.status(CREATED).build();
+    ResponseEntity<UUID> addToCart(@RequestBody Item item){
+        UUID id = shoppingCart.addToCart(item);
+        return new ResponseEntity<>(id,CREATED);
     }
 
     @GetMapping("/shopping-cart/items")
-    List<Item> item(){
+    List<Item> view(){
         return shoppingCart.getItems();
     }
 
     @DeleteMapping("/shopping-cart/items/{id}")
-    void deleteItem(@PathVariable int id){
+    void deleteItem(@PathVariable UUID id){
         shoppingCart.removeItem(id);
     }
 }

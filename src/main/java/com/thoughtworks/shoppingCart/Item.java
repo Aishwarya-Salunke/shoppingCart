@@ -1,19 +1,22 @@
 package com.thoughtworks.shoppingCart;
 
+import java.util.UUID;
+
 public class Item {
-    private final int id;
+
+    private final UUID id;
 
     private final String name;
 
     private final double price;
 
-    public Item(int id, String name, double price){
-        this.id = id;
+    public Item(String name, double price){
+        this.id = UUID.randomUUID();
         this.name = name;
         this.price = price;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
