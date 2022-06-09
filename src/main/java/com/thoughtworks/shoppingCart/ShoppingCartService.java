@@ -10,7 +10,7 @@ import java.util.UUID;
 public class ShoppingCartService {
     private List<Item> itemsInCart = new ArrayList<Item>();
 
-    public UUID addToCart(Item item){
+    public UUID addItem(Item item){
         itemsInCart.add(item);
         return item.getId();
     }

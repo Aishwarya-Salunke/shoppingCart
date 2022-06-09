@@ -17,7 +17,7 @@ public class ShoppingCartController {
 
     @PostMapping("/shopping-cart/items")
     ResponseEntity<UUID> addToCart(@RequestBody Item item){
-        UUID id = shoppingCart.addToCart(item);
+        UUID id = shoppingCart.addItem(item);
         return new ResponseEntity<>(id,CREATED);
     }
 
