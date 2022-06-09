@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -22,7 +21,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/shopping-cart/items")
-    List<Item> view(){
+    Bill view(){
         return shoppingCart.getItems();
     }
 

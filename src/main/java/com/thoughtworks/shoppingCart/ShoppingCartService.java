@@ -15,12 +15,20 @@ public class ShoppingCartService {
         return item.getId();
     }
 
-    public List<Item> getItems() {
-        return itemsInCart;
+    public Bill getItems() {
+        return new Bill(itemsInCart,totalPrice());
     }
 
     public void removeItem(UUID id){
         Item item = itemsInCart.stream().filter(it -> it.getId()==id).findFirst().orElse(null);
         itemsInCart.remove(item);
+    }
+
+    public double totalPrice(){
+        double totalPrice = 0;
+        for(Item item : itemsInCart){
+           totalPrice +=item.getPrice();
+        }
+        return totalPrice;
     }
 }

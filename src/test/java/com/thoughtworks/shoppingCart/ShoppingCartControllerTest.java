@@ -30,10 +30,11 @@ public class ShoppingCartControllerTest {
 
     @Test
     void getItemsInShoppingCart() throws Exception{
-        Mockito.when(shoppingCartService.getItems()).thenReturn(List.of(item));
+        Bill bill = new Bill(List.of(item),30);
+        Mockito.when(shoppingCartService.getItems()).thenReturn(bill);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/shopping-cart/items"))
-                .andExpect(content().json(objectMapper.writeValueAsString(List.of(item))))
+                .andExpect(content().json(objectMapper.writeValueAsString(bill)))
                 .andExpect(status().isOk());
 
         Mockito.verify(shoppingCartService).getItems();
@@ -46,7 +47,7 @@ public class ShoppingCartControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/shopping-cart/items")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(item)))
-                .andExpect(content().string(objectMapper.writeValueAsString(item.getId())))
+                .andExpect(content().json(objectMapper.writeValueAsString(item.getId())))
                 .andExpect(status().isCreated());
 
         Mockito.verify(shoppingCartService).addItem(item);
