@@ -1,6 +1,7 @@
 package com.thoughtworks.shoppingCart;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +16,20 @@ import java.util.List;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(ShoppingCartController.class)
+@WebMvcTest(Controller.class)
 public class ShoppingCartControllerTest {
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private ObjectMapper objectMapper;
-
     @MockBean
-    private ShoppingCartService shoppingCartService;
+    private Service shoppingCartService;
 
-    private Item item = new Item("Book",30);
+    private static Item item;
+    @BeforeAll
+    static void setup(){
+        item = new Item("Book",30);
+    }
 
     @Test
     void getItemsInShoppingCart() throws Exception{
@@ -36,6 +39,7 @@ public class ShoppingCartControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/shopping-cart/items"))
                 .andExpect(content().json(objectMapper.writeValueAsString(bill)))
                 .andExpect(status().isOk());
+
 
         Mockito.verify(shoppingCartService).getItems();
     }

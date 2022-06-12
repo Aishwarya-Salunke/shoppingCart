@@ -9,10 +9,10 @@ import java.util.UUID;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-public class ShoppingCartController {
+public class Controller {
 
     @Autowired
-    ShoppingCartService shoppingCart;
+    Service shoppingCart;
 
     @PostMapping("/shopping-cart/items")
     ResponseEntity<UUID> addToCart(@RequestBody Item item){
@@ -26,7 +26,7 @@ public class ShoppingCartController {
     }
 
     @DeleteMapping("/shopping-cart/items/{id}")
-    void deleteItem(@PathVariable UUID id){
+    void deleteItem(@PathVariable UUID id) throws Exception {
         shoppingCart.removeItem(id);
     }
 }

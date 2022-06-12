@@ -4,12 +4,9 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Item {
-
-    private final UUID id;
-
     private final String name;
-
     private final double price;
+    private final UUID id;
 
     public Item(String name, double price){
         this.id = UUID.randomUUID();
@@ -44,6 +41,4 @@ public class Item {
     public int hashCode() {
         return Objects.hash(id,name,price);
     }
-
-
 }
