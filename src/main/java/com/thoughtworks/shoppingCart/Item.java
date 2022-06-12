@@ -1,20 +1,24 @@
 package com.thoughtworks.shoppingCart;
 
+import javax.persistence.*;
 import java.util.Objects;
-import java.util.UUID;
 
+@Entity
+@Table(name = "Items")
 public class Item {
     private final String name;
     private final double price;
-    private final UUID id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     public Item(String name, double price){
-        this.id = UUID.randomUUID();
         this.name = name;
         this.price = price;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 

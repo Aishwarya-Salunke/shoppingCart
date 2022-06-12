@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
@@ -15,8 +13,8 @@ public class Controller {
     Service shoppingCart;
 
     @PostMapping("/shopping-cart/items")
-    ResponseEntity<UUID> addToCart(@RequestBody Item item){
-        UUID id = shoppingCart.addItem(item);
+    ResponseEntity<Integer> addToCart(@RequestBody Item item){
+        int id = shoppingCart.addItem(item);
         return new ResponseEntity<>(id,CREATED);
     }
 
@@ -26,7 +24,7 @@ public class Controller {
     }
 
     @DeleteMapping("/shopping-cart/items/{id}")
-    void deleteItem(@PathVariable UUID id) throws Exception {
+    void deleteItem(@PathVariable int id) throws Exception {
         shoppingCart.removeItem(id);
     }
 }

@@ -3,26 +3,25 @@ package com.thoughtworks.shoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.UUID;
 
 
 @org.springframework.stereotype.Service
 public class Service {
     @Autowired
-    private Repository repository;
+    private ShoppingCartRepository repository;
 
-    public UUID addItem(Item item){
-        return repository.addItem(item);
+    public int addItem(Item item){
+        return (repository.save(item).getId());
     }
 
     public Bill getItems() {
-        List<Item> itemsInCart = repository.getItems();
+        List<Item> itemsInCart = repository.findAll();
         Bill bill = new Bill(itemsInCart,totalPrice(itemsInCart));
         return bill;
     }
 
-    public void removeItem(UUID id) {
-        repository.removeItem(id);
+    public void removeItem(int id) {
+        repository.deleteById(id);
     }
 
     private double totalPrice(List<Item> itemsInCart){
