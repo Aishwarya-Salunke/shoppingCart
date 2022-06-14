@@ -14,9 +14,9 @@ public class Service {
         return (repository.save(item).getId());
     }
 
-    public Bill getItems() {
+    public ItemDTO getItems() {
         List<Item> itemsInCart = repository.findAll();
-        Bill bill = new Bill(itemsInCart,totalPrice(itemsInCart));
+        ItemDTO bill = new ItemDTO(itemsInCart,totalPrice(itemsInCart));
         return bill;
     }
 
@@ -31,5 +31,4 @@ public class Service {
         }
         return totalPrice;
     }
-
 }

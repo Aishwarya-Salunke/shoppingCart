@@ -19,7 +19,7 @@ public class Controller {
     }
 
     @GetMapping("/shopping-cart/items")
-    Bill view(){
+    ItemDTO view(){
         return shoppingCart.getItems();
     }
 

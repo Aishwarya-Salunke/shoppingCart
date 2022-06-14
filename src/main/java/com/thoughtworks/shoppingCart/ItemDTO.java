@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class Bill {
+public class ItemDTO {
     private List<Item> itemsInCart;
     private double totalPrice;
-    public Bill(List<Item> itemsInCart, double totalPrice) {
+    public ItemDTO(List<Item> itemsInCart, double totalPrice) {
         this.totalPrice = totalPrice;
         this.itemsInCart = itemsInCart;
     }
@@ -24,7 +24,7 @@ public class Bill {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Bill bill = (Bill) o;
+        ItemDTO bill = (ItemDTO) o;
         return Double.compare(bill.totalPrice, totalPrice) == 0 && Objects.equals(itemsInCart, bill.itemsInCart);
     }
 

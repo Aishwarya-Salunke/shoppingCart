@@ -33,7 +33,7 @@ public class ShoppingCartControllerTest {
 
     @Test
     void getItemsInShoppingCart() throws Exception{
-        Bill bill = new Bill(List.of(item),30);
+        ItemDTO bill = new ItemDTO(List.of(item),30);
         Mockito.when(shoppingCartService.getItems()).thenReturn(bill);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/shopping-cart/items"))

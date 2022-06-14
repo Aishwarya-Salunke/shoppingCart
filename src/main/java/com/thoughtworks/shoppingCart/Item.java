@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Items")
 public class Item {
     private final String name;
     private final double price;

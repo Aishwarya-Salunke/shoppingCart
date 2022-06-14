@@ -32,10 +32,10 @@ public class ShoppingCartServiceTest {
     @Test
     void shouldReturnAllTheItemsThatAreInTheCartAndTheTotalPrice(){
         List<Item> expectedListOfItems = List.of(book);
-        Bill expectedBill = new Bill(expectedListOfItems,30.0);
+        ItemDTO expectedBill = new ItemDTO(expectedListOfItems,30.0);
         when(repository.findAll()).thenReturn(expectedListOfItems);
 
-        Bill actualBill = service.getItems();
+        ItemDTO actualBill = service.getItems();
         assertThat(actualBill,is(equalTo(expectedBill)));
     }
 
